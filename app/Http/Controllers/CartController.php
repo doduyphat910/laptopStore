@@ -18,6 +18,7 @@ class CartController extends Controller
 
     public function buyProduct($id) {
       $product_buy = Laptop::find($id);
+
       Cart::add(array('id'=>$id, 'name'=>$product_buy->name, 'qty'=>1, 'price'=>$product_buy->price, 'options'=>array('img'=>$product_buy->image, 'priceDefault'=>$product_buy->price)));
       return redirect('cartContent');
     }
@@ -34,6 +35,7 @@ class CartController extends Controller
       Cart::remove($id);
       return redirect('cartContent');
     }
+
     public function updateQtyMinus($id) {
       $a = Cart::get($id);
       $name = $a->name;
